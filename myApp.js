@@ -7,34 +7,42 @@ let Person;
 
 const personSchema = new mongoose.Schema({
   name: {
-    type:String
+    type: String
   },
   age: Number,
-  favoriteFoods:[String]
+  favoriteFoods: [String]
 })
 
 Person = mongoose.model('Person', personSchema)
 
 const createAndSavePerson = (done) => {
   let document = Person({
-    name:'Pedro',
-    age:27,
-    favoriteFoods:['pizza','tacos']
+    name: 'Pedro',
+    age: 27,
+    favoriteFoods: ['pizza', 'tacos']
   });
-  
-  document.save((err,data)=>{
-    if(err){
+
+  document.save((err, data) => {
+    if (err) {
       console.log(`Error al crear el registro ${err}`);
-    }else{
+    } else {
       done(null, data);
     }
   })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople)
-  done(null /*, data*/);
-};
+  arrayOfPeople.forEach(element => {
+    element.save((err, data) => {
+      if (err) {
+        console.log(`Error al crear el registro ${err}`)
+      } else {
+        console.log(`Registro guardado con exito`);
+        done(null,data)
+      }
+    })
+  });
+}
 
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/);
