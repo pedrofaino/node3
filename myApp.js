@@ -32,7 +32,20 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople)
+  Person.create((err,data) =>{
+    if(err){
+      console.log(`Error al crear el registro ${err}`);
+    }else{
+      done(null,data)
+    }
+  })
+
+  Person.create([{
+    name: 'Pedro',
+    age: 27,
+    favoriteFoods: ['pizza', 'tacos']
+  }])
+  done(null)
 }
 
 const findPeopleByName = (personName, done) => {
