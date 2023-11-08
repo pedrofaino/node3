@@ -32,16 +32,8 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  arrayOfPeople.forEach(element => {
-    element.save((err, data) => {
-      if (err) {
-        console.log(`Error al crear el registro ${err}`)
-      } else {
-        console.log(`Registro guardado con exito`);
-        done(null,data)
-      }
-    })
-  });
+  Person.create(arrayOfPeople)
+  done(null, arrayOfPeople)
 }
 
 const findPeopleByName = (personName, done) => {
