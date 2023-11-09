@@ -111,7 +111,7 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  Person.find({ favoriteFoods: foodToSearch }).sort(name).limit(2).select(!age).exec(done(null, data));
+  Person.find({ favoriteFoods: foodToSearch }).sort().limit(2).select(!age).exec(done(null, data));
 }
 
 /** **Well Done !!**
