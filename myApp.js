@@ -33,6 +33,7 @@ const createAndSavePerson = (done) => {
 
 const createManyPeople = (arrayOfPeople, done) => {
   let data = Person.create(arrayOfPeople);
+  console.log(data)
   done(null,data)
 }
 
